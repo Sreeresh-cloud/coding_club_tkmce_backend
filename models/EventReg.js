@@ -1,4 +1,3 @@
-// models/EventReg.js
 const mongoose = require('mongoose');
 
 const EventRegSchema = new mongoose.Schema({
@@ -25,7 +24,7 @@ const EventRegSchema = new mongoose.Schema({
     emailId: {
         type: String,
         required: true,
-        trim: true, // Remove whitespace from the start and end
+        trim: true, 
     },
     mobileNo: {
         type: String,
@@ -33,6 +32,5 @@ const EventRegSchema = new mongoose.Schema({
     },
 });
 
-// Export the model
 const EventReg = mongoose.model('EventReg', EventRegSchema);
 module.exports = EventReg;
