@@ -20,7 +20,7 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true,tls
     .catch(err => console.error('MongoDB connection error:', err));
 
 app.get('/', (req, res) => {
-    res.send('Welcome to the  Backend!');
+    res.json({ status: 'active' }); 
 });
 
 app.post("/events", upload.single("image"), async (req, res) => {
@@ -54,8 +54,8 @@ app.post("/events", upload.single("image"), async (req, res) => {
 
 app.get('/events', async (req, res) => {
     try {
-        const events = await Event.find(); // Fetch all events
-        res.status(200).json(events); // Send the events back to the client
+        const events = await Event.find(); 
+        res.status(200).json(events); 
     } catch (error) {
         console.error("Error fetching events", error);
         res.status(500).send("Error fetching events");
