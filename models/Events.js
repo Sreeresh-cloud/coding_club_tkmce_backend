@@ -6,7 +6,7 @@ const eventSchema = new mongoose.Schema({
     eventDescription: { type: String, required: true },
     eventDate: { type: Date, required: true },
     eventVenue: { type: String, required: true },
-    eventImage: { type: String, required: false }, // Store image URL or file path
+    eventImage: { type: String, required: false }, 
     eventMode: { type: String, enum: ["Online", "Offline"], required: true },
 });
 
