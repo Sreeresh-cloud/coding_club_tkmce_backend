@@ -26,6 +26,23 @@ app.get('/', (req, res) => {
     res.json({ status: 'active' });
 });
 
+app.post('/admin-login', (req, res) => {
+    const { username, password } = req.body;
+
+    console.log("Received credentials:", username, password); // Debugging
+    console.log("Stored credentials:", process.env.ADMIN_USERNAME, process.env.ADMIN_PASSWORD); // Debugging
+
+    const validUsername = process.env.ADMIN_USERNAME;
+    const validPassword = process.env.ADMIN_PASSWORD;
+
+    if (username === validUsername && password === validPassword) {
+        return res.status(200).json({ message: "Login successful" });
+    } else {
+        return res.status(401).json({ message: "Invalid username or password" });
+    }
+});
+
+
 app.post("/events", upload.single("image"), async (req, res) => {
     const { name, description, date, venue, mode } = req.body;
 
@@ -63,15 +80,18 @@ app.get('/events', async (req, res) => {
 });
 
 app.post('/register', async (req, res) => {
-    const { name, branch, year, emailId, mobileNo, eventTitle, eventDate } = req.body;
+    const { name, college, otherCollegeName, branch, year, batch, emailId, mobileNo, eventTitle, eventDate } = req.body;
 
     try {
         const newRegistration = new EventReg({
             eventTitle,
             eventDate,
             name,
+            college,
+            otherCollegeName: college === "Other" ? otherCollegeName : "", 
             branch,
             year,
+            batch,
             emailId,
             mobileNo,
         });
@@ -83,6 +103,7 @@ app.post('/register', async (req, res) => {
         return res.status(500).json({ message: 'Internal server error' });
     }
 });
+
 
 app.get('/events/:eventName/registrations', async (req, res) => {
     try {
@@ -102,3 +123,6 @@ app.get('/events/:eventName/registrations', async (req, res) => {
 
 // ✅ EXPORT AS A SERVERLESS FUNCTION
 module.exports = app;
+
+
+//https://codingclub-backend.vercel.app

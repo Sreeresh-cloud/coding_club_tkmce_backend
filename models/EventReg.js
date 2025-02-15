@@ -13,6 +13,17 @@ const EventRegSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    college: {
+        type: String,
+        required: true,
+        enum: ['TKMCE', 'Other'],
+    },
+    otherCollegeName: {
+        type: String,
+        required: function() {
+            return this.college === 'Other'; 
+        }
+    },
     branch: {
         type: String,
         required: true,
@@ -20,6 +31,11 @@ const EventRegSchema = new mongoose.Schema({
     year: {
         type: String,
         required: true,
+    },
+    batch: {
+        type: String,
+        required: true,
+        enum: ['A', 'B', 'C'], // Ensures only A, B, or C can be stored
     },
     emailId: {
         type: String,
