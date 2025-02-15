@@ -1,5 +1,4 @@
 #Environment Variables
 .env
 .vercel
-localServer.js
 

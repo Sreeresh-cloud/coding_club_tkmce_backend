@@ -29,8 +29,8 @@ app.get('/', (req, res) => {
 app.post('/admin-login', (req, res) => {
     const { username, password } = req.body;
 
-    console.log("Received credentials:", username, password); // Debugging
-    console.log("Stored credentials:", process.env.ADMIN_USERNAME, process.env.ADMIN_PASSWORD); // Debugging
+    console.log("Received credentials:", username, password); 
+    console.log("Stored credentials:", process.env.ADMIN_USERNAME, process.env.ADMIN_PASSWORD); 
 
     const validUsername = process.env.ADMIN_USERNAME;
     const validPassword = process.env.ADMIN_PASSWORD;
